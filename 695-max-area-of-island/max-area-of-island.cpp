@@ -1,36 +1,36 @@
 class Solution {
 public:
-    vector<vector<int>> directions{{1,0},{-1,0},{0,1},{0,-1}};
-    typedef pair<int,int> P;
+    typedef pair<int,int> p;
     int maxAreaOfIsland(vector<vector<int>>& grid) {
         int m=grid.size();
         int n=grid[0].size();
-        queue<P> que;
+        vector<vector<int>> directions{{1,0},{-1,0},{0,1},{0,-1}};
         int maxx = 0;
+        int size=0;
+        queue<p> que;
         for(int i=0;i<m;i++){
             for(int j=0;j<n;j++){
                 if(grid[i][j]==1){
-                    int size=1;
-                    grid[i][j]=0;
-                    que.push({i,j});
-                    while(!que.empty()){
-                       P curr=que.front();
-                       que.pop();
-                       int x=curr.first;
-                       int y=curr.second;
-                    
-                        for(auto &dir:directions){
-                          int new_i=x+dir[0];
-                          int new_j=y+dir[1];
-                          if(new_i>=0&&new_j>=0&&new_i<m&&new_j<n&&grid[new_i][new_j]==1){
+                     size=1;
+                     que.push({i,j});
+                     grid[i][j]=0;
+                     while(!que.empty()){
+                            p curr=que.front();
+                            int x=curr.first;
+                            int y=curr.second;
+                            que.pop();
+                    for(auto &dir:directions){
+                        int ni=x+dir[0];
+                        int nj=y+dir[1];
+                        if(ni>=0&&nj>=0&&ni<m&&nj<n&&grid[ni][nj]==1){
                             size++;
-                            grid[new_i][new_j]=0;
-                            que.push({new_i,new_j});
-                         }
+                            grid[ni][nj]=0;
+                             que.push({ni,nj});
+                        }
                     }
                 }
-                    maxx = max(maxx,size);
-                }
+            }
+                maxx = max(size,maxx);
             }
         }
         return maxx;
