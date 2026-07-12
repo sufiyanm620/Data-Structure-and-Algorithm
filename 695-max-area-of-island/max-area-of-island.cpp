@@ -26,12 +26,12 @@ public:
                             size++;
                             grid[ni][nj]=0;
                              que.push({ni,nj});
-                        }
-                    }
+                         }
+                      }
+                   }
                 }
-            }
                 maxx = max(size,maxx);
-            }
+             }
         }
         return maxx;
     }
