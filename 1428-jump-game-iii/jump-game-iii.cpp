@@ -1,29 +1,17 @@
 class Solution {
 public:
+    int n;
+    bool dfs(vector<int>& arr, int idx,vector<bool> &visited){
+           if(idx<0||idx>=n||visited[idx])
+              return false;
+            if(arr[idx]==0) return true;
+            visited[idx]=true;
+            return dfs(arr,idx+arr[idx],visited)||dfs(arr,idx-arr[idx],visited);
+            
+    }
     bool canReach(vector<int>& arr, int start) {
-        int n=arr.size();
-        vector<bool> res(n,false);
-        queue<pair<int,int>> que;
-        que.push({start,arr[start]});
-        res[start]=true;
-        int x = 0;
-        while(!que.empty()){
-            int k=que.size();
-            while(k--){
-             auto[idx,val]=que.front();
-            if(val==0) return true;
-            que.pop();
-            if(idx+val<n&&!res[idx+val]){
-                que.push({idx+val,arr[idx+val]});
-                res[idx+val]=true;
-            }if(idx-val>=0&&!res[idx-val]){
-                que.push({idx-val,arr[idx-val]});
-                res[idx-val]=true;
-            }
-        }
-        x++;
-        if(x==n) break;
-     }
-     return false;
+        n = arr.size();
+        vector<bool> visited(n,false);
+        return dfs(arr,start,visited);
     }
 };
