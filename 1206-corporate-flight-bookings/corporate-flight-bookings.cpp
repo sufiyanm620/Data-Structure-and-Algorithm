@@ -6,7 +6,7 @@ public:
             int start = bookings[i][0];
             int end = bookings[i][1];
             int m = bookings[i][2];
-            for(int j=start-1;j<=end-1;j++){
+            for(int j=start-1;j<end;j++){
                 res[j]+=m;
             }
         }
