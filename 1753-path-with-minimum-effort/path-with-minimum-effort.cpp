@@ -14,7 +14,7 @@ public:
             int effort=curr[0];
             int x=curr[1];
             int y=curr[2];
-            if(x==m-1&&y==n-1) return effort;
+            // if(x==m-1&&y==n-1) return effort;
             if(effort>dist[x][y]) continue;
             for(auto &dir:directions){
                 int ni=x+dir[0];
@@ -28,6 +28,6 @@ public:
                 }
             }
         }
-        return 0;
+        return dist[m-1][n-1];
     }
 };
