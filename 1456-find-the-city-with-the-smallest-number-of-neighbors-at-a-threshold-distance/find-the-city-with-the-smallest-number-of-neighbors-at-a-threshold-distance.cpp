@@ -19,7 +19,7 @@ public:
         while(!pq.empty()){
             auto [cost, u] = pq.top();
             pq.pop();
-            if(cost>dist[u]) continue;
+            // if(cost>dist[u]) continue;
             for(auto &it:adj[u]){
                 int v=it.first;
                 int wt=it.second;
