@@ -21,10 +21,9 @@ public:
             int ni=x+dir[0];
             int nj=y+dir[1];
             if(ni>=0&&nj>=0&&ni<m&&nj<n&&grid[ni][nj]==0){
-                   int newdist=d+1;
-                    if(newdist<dist[ni][nj]){
-                        dist[ni][nj]=newdist;
-                        pq.push({newdist,ni,nj});
+                    if(d+1<dist[ni][nj]){
+                        dist[ni][nj]=d+1;
+                        pq.push({dist[ni][nj],ni,nj});
                     }
             }
            }
