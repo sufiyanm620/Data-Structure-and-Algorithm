@@ -23,6 +23,7 @@ public:
             int x=curr[1];
             int y=curr[2];
             pq.pop();
+            if(wt>dist[x][y]) continue;
             for(auto &dir:directions){
                 int ni=x+dir[0];
                 int nj=y+dir[1];
