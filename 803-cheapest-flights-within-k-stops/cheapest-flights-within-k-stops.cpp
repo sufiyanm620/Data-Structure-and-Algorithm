@@ -1,35 +1,34 @@
 class Solution {
 public:
     int findCheapestPrice(int n, vector<vector<int>>& flights, int src, int dst, int k) {
-        vector<int> distance(n,INT_MAX);
-        unordered_map<int,vector<pair<int,int>>> adj; 
-        for(vector<int> &vec:flights){
-            int u = vec[0];
-            int v = vec[1];
-            int cost=vec[2];
-            adj[u].push_back({v,cost});
+        vector<vector<pair<int,int>>> adj(n);
+        priority_queue<vector<int>,vector<vector<int>>,greater<vector<int>>> pq;
+        vector<vector<int>> dist(n,vector<int>(k+2,INT_MAX));
+        for(auto &it:flights){
+            adj[it[0]].push_back({it[1],it[2]});
         }
-        queue<pair<int,int>> que;
-        que.push({src,0});
-        distance[src]=0;
-        int steps=0;
-        while(!que.empty()&&steps<=k){
-            int N = que.size();
-            while(N--){
-                int u = que.front().first;
-                int d = que.front().second;
-                que.pop();
-                for(pair<int,int> &p : adj[u]){
-                    int v = p.first;
-                    int cost = p.second;
-                    if(distance[v]>d+cost){
-                        distance[v]=d+cost;
-                        que.push({v,d+cost});
-                    }
-                }
+        dist[src][0]=0;
+        pq.push({0,src,0});
+        while(!pq.empty()){
+            auto curr=pq.top();
+            pq.pop();
+
+            int wt=curr[0];
+            int u=curr[1];
+            int s=curr[2];
+            if(u==dst) return wt;
+            if(s==k+1) continue;
+            for(auto &it:adj[u]){
+                 int v=it.first;
+                 int cost=it.second;
+                 if(cost+wt<dist[v][s+1]){
+                    dist[v][s+1]=cost+wt;
+                    pq.push({cost+wt,v,s+1});
+                 }
             }
-            steps++;
+
         }
-        return distance[dst]==INT_MAX?-1:distance[dst];
+        return -1;
+        
     }
 };
