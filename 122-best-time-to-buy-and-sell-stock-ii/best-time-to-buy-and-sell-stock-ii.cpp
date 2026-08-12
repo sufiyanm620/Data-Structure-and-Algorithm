@@ -9,12 +9,11 @@ public:
             int skip=solve(prices,i+1,1,dp);
             return dp[i][canbuy]=max(buy,skip);
         }
-        else{
+        
             int sell=prices[i]+solve(prices,i+1,1,dp);
-            int skip=solve(prices,i+1,0
-            ,dp);
+            int skip=solve(prices,i+1,0,dp);
             return dp[i][canbuy]=max(sell,skip);
-        }
+        
     }
     int maxProfit(vector<int>& prices) {
         n=prices.size();
