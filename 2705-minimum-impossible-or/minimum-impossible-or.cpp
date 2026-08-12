@@ -1,11 +1,11 @@
 class Solution {
 public:
     int minImpossibleOR(vector<int>& nums) {
-        int two=1;
+        int ans=1;
         set<int> st;
         for(int x:nums) st.insert(x);
-        while(st.count(two))
-          two*=2;
-        return two;
+        while(st.count(ans))
+          ans<<=1;
+        return ans;
     }
 };
