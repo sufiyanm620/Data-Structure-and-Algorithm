@@ -4,13 +4,11 @@ public:
         long long ans=0;
         int c=0;
         int n=nums.size();
-        for(int i=0;i<n;i++){
-            if(nums[i]==0){
+        for(int x:nums){
+            if(x==0){
                 c++;
                 ans+=c;
-            }else{
-                c=0;
-            }
+            }else c=0;
         }
         return ans;
     }
