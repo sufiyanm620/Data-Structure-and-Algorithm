@@ -2,16 +2,13 @@ class Solution {
 public:
     int longestContinuousSubstring(string s) {
        int n=s.size();
-       int ans=0;
+       int ans=1;
        int count=1;
        for(int i=1;i<n;i++){
-            if(s[i]-s[i-1]==1){
-                count++;
-            }else{
-                count=1;
-            }
+            if(s[i]-s[i-1]==1) count++;
+            else count=1;
             ans=max(ans,count);
        }
-       return max(ans,count);
+       return ans;
     }
 };
