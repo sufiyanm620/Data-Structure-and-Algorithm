@@ -1,18 +1,22 @@
 class Solution {
 public:
     bool carPooling(vector<vector<int>>& trips, int capacity) {
-        vector<int> diff(1001,0);
-        for(auto &trip:trips){
-            int total = trip[0];
-            int start = trip[1];
-            int end = trip[2];
-            diff[start]+=total;
-            diff[end]-=total;
+        map<int,int> mp;
+        for(auto &it:trips){
+                int l=it[1];
+                int r=it[2];
+                int pass=it[0];
+                mp[l]+=pass;
+                mp[r]-=pass;
         }
-        int curr=0;
-        for(int x : diff){
-            curr+=x;
-            if(curr>capacity) return false;
+        int prev=-1;
+        int total=0;
+        for(auto [x,change]:mp){
+            if(prev!=-1&&total!=0){
+                if(total>capacity) return 0;
+            }
+            total+=change;
+            prev=x;
         }
         return true;
     }
