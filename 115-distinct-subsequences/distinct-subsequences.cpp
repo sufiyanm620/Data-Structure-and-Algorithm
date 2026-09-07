@@ -17,7 +17,7 @@ public:
     int numDistinct(string s, string t) {
         m=s.size();
         n=t.size();
-        dp.assign(1001,vector<int>(1001,-1));
+        dp.assign(m,vector<int>(n,-1));
         return solve(0,0,s,t);
     }
 };
