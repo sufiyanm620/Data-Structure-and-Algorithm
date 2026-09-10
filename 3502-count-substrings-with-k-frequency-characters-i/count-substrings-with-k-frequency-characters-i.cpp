@@ -5,6 +5,7 @@ public:
         map<char,int> mp;
         int l=0;
         int ans=0;
+        if(n<k) return 0;
         for(int r=0;r<n;r++){
             mp[s[r]]++;
             while(mp[s[r]]==k){
