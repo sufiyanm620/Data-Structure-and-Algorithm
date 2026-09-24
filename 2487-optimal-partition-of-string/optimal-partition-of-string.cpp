@@ -2,15 +2,15 @@ class Solution {
 public:
     int partitionString(string s) {
         int n=s.size();
-        map<char,int> mp;
         int count=0;
+        vector<int> freq(26,0);
         for(int i=0;i<n;i++){
-            if(mp.count(s[i])==0){
-                mp[s[i]]++;
+            if(freq[s[i]-'a']==0){
+                freq[s[i]-'a']++;
             }else{
                 count++;
-                mp.clear();
-                mp[s[i]]++;
+                for(int i=0;i<26;i++) freq[i]=0;
+                freq[s[i]-'a']++;
             }
         }
         return count+1;
