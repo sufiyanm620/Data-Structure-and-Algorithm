@@ -2,20 +2,20 @@ class Solution {
 public:
     long long maxWeight(vector<int>& pizzas) {
         long long ans=0;
-        priority_queue<int> pq;
-        for(int x:pizzas) pq.push(x);
         int n=pizzas.size();
+        sort(pizzas.begin(),pizzas.end());
         int k=n/4;
         int m=(k+1)/2;
         int s=k/2;
-        while(m--){
-            ans+=pq.top();
-            pq.pop();
+        int j=n-1;
+        for(int i=0;i<m;i++){
+            ans+=pizzas[j];
+            j--;
         }
-        while(s--){
-            pq.pop();
-            ans+=pq.top();
-            pq.pop();
+        int f=j-1;
+        for(int i=0;i<s;i++){
+            ans+=pizzas[f];
+            f-=2;
         }
         return ans;
     }
