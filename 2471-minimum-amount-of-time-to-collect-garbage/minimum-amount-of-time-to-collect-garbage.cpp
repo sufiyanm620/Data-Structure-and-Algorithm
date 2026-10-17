@@ -40,6 +40,7 @@ public:
                 else if(garbage[i][j]=='G')
                  c=max(c,i);
             }
+            if(a>0&&b>0&&c>0) break;
         }
         for(int i=0;i<travel.size();i++){
             if(i<a) ans+=travel[i];
