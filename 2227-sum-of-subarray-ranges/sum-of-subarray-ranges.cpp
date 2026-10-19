@@ -4,8 +4,8 @@ public:
         long long ans=0;
         int n=nums.size();
         for(int i=0;i<n;i++){
-            int maxx=INT_MIN;
-            int minn=INT_MAX;
+            long long maxx=LLONG_MIN;
+            long long minn=LLONG_MAX;
             for(int j=i;j<n;j++){
                 if(nums[j]<minn) minn=nums[j];
                 if(nums[j]>maxx) maxx=nums[j];
