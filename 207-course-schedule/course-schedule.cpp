@@ -1,33 +1,31 @@
 class Solution {
 public:
-    bool canFinish(int num, vector<vector<int>>& graph) {
-         vector<int> indegree(num,0);
-         int m=graph.size();
+    bool canFinish(int n, vector<vector<int>>& pre) {
+         vector<int> inDegree(n,0);
          unordered_map<int,vector<int>> adj;
-         for(int i=0;i<m;i++){
-               int u=graph[i][0];
-               int v=graph[i][1];
-               adj[u].push_back(v);
-               indegree[v]++;
+         for(auto &it:pre){
+            adj[it[0]].push_back(it[1]);
+            adj[it[1]].push_back(it[0]);
+            inDegree[it[1]]++;
          }
          queue<int> que;
-         for(int i=0;i<num;i++){
-               if(indegree[i]==0)
-                 que.push(i);
-        }
-        int count=0;
-        while(!que.empty()){
+         for(int i=0;i<n;i++){
+            if(inDegree[i]==0)
+              que.push(i);
+         }
+         int count=0;
+         while(!que.empty()){
             int u=que.front();
-            que.pop();
             count++;
+            que.pop();
             for(auto &v:adj[u]){
-                indegree[v]--;
-                if(indegree[v]==0)
+                inDegree[v]--;
+                if(inDegree[v]==0){
                   que.push(v);
-            
-        }
-        }
-        return count==num;
+            }
+         }
     }
+         return n==count;
 
+    }
 };
