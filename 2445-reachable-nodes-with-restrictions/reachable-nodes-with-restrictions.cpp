@@ -17,8 +17,6 @@ public:
         }
         int count=0;
         while(!que.empty()){
-            int sz=que.size();
-            while(sz--){
                    count++;
             auto curr=que.front();
             que.pop();
@@ -29,8 +27,6 @@ public:
                     vis[v]=true;
                 }
             }
-        }
-     
         }
      
         return count;
