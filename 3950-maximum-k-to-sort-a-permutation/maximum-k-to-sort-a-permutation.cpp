@@ -1,18 +1,12 @@
 class Solution {
 public:
     int sortPermutation(vector<int>& nums) {
-      int ans=0;
-      int n=nums.size();
-      bool check=false;
-      for(int i=0;i<n;i++){
-        if(nums[i]!=i&&!check){
-          ans=nums[i];
-          check=true;
+        int ans=-1;
+        int n=nums.size();
+        for(int i=0;i<n;i++){
+            if(nums[i]!=i)
+              ans&=nums[i];
         }
-        if(check&&nums[i]!=i){
-            ans&=nums[i];
-        }
-      }  
-      return ans;
+        return max(0,ans);
     }
 };
