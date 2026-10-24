@@ -23,7 +23,7 @@ public:
         sort(heaters.begin(),heaters.end());
         int l=0;
         int ans=-1;
-        int r=1000000000;
+        int r=INT_MAX;
         while(l<=r){
             int mid=l+(r-l)/2;
             if(isPossible(houses,heaters,mid)){
