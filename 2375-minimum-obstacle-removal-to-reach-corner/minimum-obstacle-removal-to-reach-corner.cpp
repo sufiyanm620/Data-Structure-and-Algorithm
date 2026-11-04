@@ -7,8 +7,7 @@ public:
         vector<vector<int>> dir{{-1,0},{0,-1},{1,0},{0,1}};
         pq.push({0,0,0});
         vector<vector<int>> dist(m,vector<int>(n,INT_MAX));
-            dist[0][0]=0;
-        grid[0][0]==0?dist[0][0]=0:dist[0][0]=1;
+        dist[0][0]=0;
         while(!pq.empty()){
             int sz=pq.size();
             while(sz--){
