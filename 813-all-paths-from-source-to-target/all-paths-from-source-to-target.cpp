@@ -1,23 +1,26 @@
 class Solution {
 public:
-    int n;
-    void solve(vector<vector<int>>& graph,int u,vector<int>& res,vector<vector<int>>& ans){
-        if(u==n-1){
-            ans.push_back(res);
-            return ;
-        }
-        for(auto &v:graph[u]){
-            res.push_back(v);
-            solve(graph,v,res,ans);
-            res.pop_back();
-        }
-    }
     vector<vector<int>> allPathsSourceTarget(vector<vector<int>>& graph) {
-        n=graph.size();
-        vector<int> res;
         vector<vector<int>> ans;
-        res.push_back(0);
-        solve(graph,0,res,ans);
+        queue<vector<int>> que;
+        que.push({0});
+        while(!que.empty()){
+            int sz=que.size();
+            while(sz--){
+                auto res=que.front();
+                que.pop();
+                int curr=res.back();
+                if(curr==graph.size()-1){
+                    ans.push_back(res);
+                    continue;
+                }
+                for(auto &v:graph[curr]){
+                     vector<int> temp=res;
+                     temp.push_back(v);
+                     que.push(temp);
+                }
+            }    
+        }
         return ans;
     }
 };
