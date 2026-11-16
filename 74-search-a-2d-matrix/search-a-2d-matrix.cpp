@@ -6,14 +6,14 @@ public:
         while(st<=end){
             int mid = st+(end-st)/2;
             if(target == mat[row][mid]){
-                return true;
+                return 1;
             }else if(target>mat[row][mid]){
                 st=mid+1;
             }else{
                 end=mid-1;
             }
         }
-        return false;
+        return 0;
     }
     bool searchMatrix(vector<vector<int>>& mat, int target) {
         int m=mat.size(),n=mat[0].size();
@@ -29,6 +29,6 @@ public:
                 endRow=midRow-1;
             }
         }
-     return false;   
+     return 0;   
     }
 };
